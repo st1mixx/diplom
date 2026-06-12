@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Товар — ShopUA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">🛍️ ShopUA</a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Каталог</a>
+        <a href="cart.html" class="nav-link">🛒 Кошик <span class="cart-count" id="cartCount">0</span></a>
+      </nav>
+      <div class="header-auth" id="headerAuth"></div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+
+      <!-- ХЛІБНІ КРИХТИ -->
+      <div style="margin-bottom:24px;font-size:.9rem;color:var(--text-3);font-weight:600">
+        <a href="index.html" style="color:var(--text-3);text-decoration:none">Каталог</a>
+        <span style="margin:0 8px">›</span>
+        <span id="breadcrumbCategory"></span>
+        <span style="margin:0 8px">›</span>
+        <span id="breadcrumbProduct" style="color:var(--text)"></span>
+      </div>
+
+      <!-- КОНТЕНТ ТОВАРУ -->
+      <div id="productContent">
+        <div style="text-align:center;padding:80px 20px;color:var(--text-3)">
+          <div style="font-size:2rem;margin-bottom:12px">⏳</div>
+          <div style="font-weight:600">Завантаження...</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 ShopUA — Всі права захищені</p>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/product.js"></script>
+</body>
+</html>

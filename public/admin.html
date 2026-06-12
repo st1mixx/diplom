@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Адмін панель — ShopUA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">🛍️ ShopUA</a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Каталог</a>
+      </nav>
+      <div class="header-auth" id="headerAuth"></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="cabinet-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="cabinet-sidebar">
+          <div class="cabinet-user">
+            <div class="cabinet-avatar">👑</div>
+            <div class="cabinet-name" id="adminName">...</div>
+            <div class="cabinet-role">Адміністратор</div>
+          </div>
+          <div class="cabinet-menu">
+            <button class="cabinet-link active" onclick="showSection('orders', this)">📦 Замовлення</button>
+            <button class="cabinet-link" onclick="showSection('products', this)">🛍️ Товари</button>
+            <button class="cabinet-link" onclick="showSection('users', this)">👥 Клієнти</button>
+            <button class="cabinet-link" onclick="showSection('stats', this)">📊 Статистика</button>
+            <button class="cabinet-link" onclick="showSection('payments', this)">💳 Платежі</button>
+            <button class="cabinet-link" onclick="logout()" style="color:var(--danger)">🚪 Вийти</button>
+          </div>
+        </aside>
+
+        <!-- КОНТЕНТ -->
+        <div class="cabinet-content">
+
+          <div id="section-orders">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+          <div class="section-title" style="margin-bottom:0">📦 Всі замовлення</div>
+          <select id="orderStatusFilter" class="form-input"
+           style="width:auto;padding:8px 16px;font-size:.9rem"
+           onchange="loadAdminOrders()">
+           <option value="">Всі статуси</option>
+           <option value="pending">⏳ Очікує</option>
+           <option value="confirmed">✅ Підтверджено</option>
+           <option value="processing">⚙️ Обробляється</option>
+           <option value="shipped">🚚 Відправлено</option>
+           <option value="delivered">🎉 Доставлено</option>
+           <option value="cancelled">❌ Скасовано</option>
+           </select>
+          </div>
+          <div id="ordersList">
+            <div style="text-align:center;padding:40px;color:var(--text-3)">⏳ Завантаження...</div>
+            </div>
+            </div>
+
+          <div id="section-products" class="hidden">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+              <div class="section-title" style="margin-bottom:0">🛍️ Товари</div>
+              <button class="btn btn-primary btn-sm" onclick="showAddProduct()">+ Додати товар</button>
+            </div>
+            <div id="addProductForm" class="hidden" style="background:var(--surface-2);border-radius:var(--radius);padding:20px;margin-bottom:20px">
+              <div style="font-weight:700;margin-bottom:16px">Новий товар</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="form-group">
+                  <label class="form-label">Назва</label>
+                  <input type="text" id="newProductName" class="form-input" placeholder="Назва товару">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Ціна (₴)</label>
+                  <input type="number" id="newProductPrice" class="form-input" placeholder="999">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Кількість</label>
+                  <input type="number" id="newProductStock" class="form-input" placeholder="10">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Категорія ID</label>
+                  <input type="number" id="newProductCategory" class="form-input" placeholder="2">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Опис</label>
+                <input type="text" id="newProductDesc" class="form-input" placeholder="Короткий опис товару">
+              </div>
+              <div style="display:flex;gap:10px;margin-top:8px">
+                <button class="btn btn-primary btn-sm" onclick="addProduct()">✅ Зберегти</button>
+                <button class="btn btn-ghost btn-sm" onclick="hideAddProduct()">Скасувати</button>
+              </div>
+            </div>
+            <div id="productsList"><div style="text-align:center;padding:40px;color:var(--text-3)">⏳ Завантаження...</div></div>
+          </div>
+
+          <div id="section-users" class="hidden">
+            <div class="section-title">👥 Клієнти</div>
+            <div id="usersList"><div style="text-align:center;padding:40px;color:var(--text-3)">⏳ Завантаження...</div></div>
+          </div>
+           <div id="section-payments" class="hidden">
+             <div class="section-title">💳 Платежі</div>
+              <div id="paymentsList">
+             <div style="text-align:center;padding:40px;color:var(--text-3)">⏳ Завантаження...</div>
+            </div>
+            </div>
+          <div id="section-stats" class="hidden">
+            <div class="section-title">📊 Статистика</div>
+            <div id="statsList"><div style="text-align:center;padding:40px;color:var(--text-3)">⏳ Завантаження...</div></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 ShopUA — Всі права захищені</p>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

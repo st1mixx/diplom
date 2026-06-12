@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopUA — Інтернет магазин</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0057ff 0%, #003db5 60%, #001f6b 100%);
+      color: #fff;
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+      top: -150px; right: -100px;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.04);
+      bottom: -80px; left: -60px;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -.5px;
+    }
+    .hero-title span { color: #ffb800; }
+    .hero-desc {
+      font-size: 1.1rem;
+      opacity: .85;
+      line-height: 1.6;
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-btn-primary {
+      background: #ffb800;
+      color: #0d0f1a;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all .25s;
+      display: inline-block;
+    }
+    .hero-btn-primary:hover { background: #ffa000; transform: translateY(-2px); }
+    .hero-btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,.5);
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all .25s;
+      display: inline-block;
+    }
+    .hero-btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+    .hero-image {
+      font-size: 12rem;
+      text-align: center;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,.3));
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-16px); }
+    }
+
+    /* ПЕРЕВАГИ */
+    .features {
+      padding: 60px 0;
+      background: #fff;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .feature-card {
+      text-align: center;
+      padding: 28px 20px;
+      border-radius: 14px;
+      background: #f5f6fa;
+      transition: all .25s;
+    }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,30,100,.1); }
+    .feature-icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .feature-title { font-weight: 800; font-size: 1rem; margin-bottom: 6px; }
+    .feature-desc { font-size: .85rem; color: #5a5f7a; line-height: 1.5; }
+
+    /* КАТЕГОРІЇ */
+    .categories-section { padding: 60px 0; }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -.3px;
+    }
+    .see-all {
+      color: #0057ff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .92rem;
+      transition: opacity .2s;
+    }
+    .see-all:hover { opacity: .7; }
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .category-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 24px 16px;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      border: 2px solid #e4e7f0;
+      transition: all .25s;
+      cursor: pointer;
+    }
+    .category-card:hover {
+      border-color: #0057ff;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,87,255,.15);
+    }
+    .category-emoji { font-size: 2.5rem; margin-bottom: 10px; }
+    .category-name { font-weight: 700; font-size: .95rem; }
+
+    /* ПОПУЛЯРНІ ТОВАРИ */
+    .popular-section { padding: 60px 0; background: #fff; }
+
+    /* БАНЕР */
+    .promo-banner {
+      margin: 0 0 60px;
+      background: linear-gradient(135deg, #ff5c00 0%, #ff3b3b 100%);
+      border-radius: 20px;
+      padding: 40px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+    .promo-banner::before {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      top: -100px; right: 100px;
+    }
+    .promo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .promo-desc { font-size: 1rem; opacity: .85; font-weight: 500; }
+    .promo-btn {
+      background: #fff;
+      color: #ff5c00;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all .25s;
+      position: relative;
+      z-index: 1;
+    }
+    .promo-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">🛍️ ShopUA</a>
+      <nav class="nav">
+        <a href="catalog.html" class="nav-link">Каталог</a>
+        <a href="cart.html" class="nav-link">🛒 Кошик <span class="cart-count" id="cartCount">0</span></a>
+      </nav>
+      <div class="header-auth" id="headerAuth"></div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div>
+          <h1 class="hero-title">
+            Найкращі товари за <span>вигідними цінами</span>
+          </h1>
+          <p class="hero-desc">
+            Смартфони, ноутбуки, одяг та взуття — все в одному місці.
+            Швидка доставка по всій Україні.
+          </p>
+          <div class="hero-btns">
+            <a href="catalog.html" class="hero-btn-primary">🛍️ Перейти до каталогу</a>
+            <a href="login.html" class="hero-btn-outline">Увійти в акаунт</a>
+          </div>
+        </div>
+        <div class="hero-image">🛍️</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПЕРЕВАГИ -->
+  <section class="features">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🚚</div>
+          <div class="feature-title">Швидка доставка</div>
+          <div class="feature-desc">Доставка Новою Поштою по всій Україні за 1-2 дні</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✅</div>
+          <div class="feature-title">Гарантія якості</div>
+          <div class="feature-desc">Всі товари перевірені та мають офіційну гарантію</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <div class="feature-title">Безпечна оплата</div>
+          <div class="feature-desc">Оплата при отриманні або онлайн карткою</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">↩️</div>
+          <div class="feature-title">Легке повернення</div>
+          <div class="feature-desc">Повернення товару протягом 14 днів без питань</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- КАТЕГОРІЇ -->
+  <section class="categories-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-heading">Категорії товарів</h2>
+        <a href="catalog.html" class="see-all">Всі категорії →</a>
+      </div>
+      <div class="categories-grid" id="homeCategoriesList"></div>
+    </div>
+  </section>
+
+  <!-- ПОПУЛЯРНІ ТОВАРИ -->
+  <section class="popular-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-heading">Популярні товари</h2>
+        <a href="catalog.html" class="see-all">Всі товари →</a>
+      </div>
+      <div class="products-grid" id="popularProducts"></div>
+    </div>
+  </section>
+
+  <!-- ПРОМО БАНЕР -->
+  <div class="container">
+    <div class="promo-banner">
+      <div style="position:relative;z-index:1">
+        <div class="promo-title">👤 Створи свій акаунт!</div>
+        <div class="promo-desc">Реєструйся та відслідковуй свої замовлення в особистому кабінеті</div>
+      </div>
+      <a href="login.html" class="promo-btn">Зареєструватись →</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 ShopUA — Всі права захищені</p>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/catalog.js"></script>
+  <script>
+    const ICONS = {
+      'Смартфони': '📱', 'Ноутбуки': '💻', 'Планшети': '📟',
+      'Навушники': '🎧', 'Футболки': '👕', 'Штани': '👖',
+      'Куртки': '🧥', 'Кросівки': '👟',
+    };
+
+    async function loadHomeCategories() {
+      try {
+        const res  = await fetch(`${API}/products/categories`);
+        const data = await res.json();
+        const container = document.getElementById('homeCategoriesList');
+        if (!container) return;
+
+        container.innerHTML = data.categories.slice(0, 8).map(cat => `
+        <a href="catalog.html?category=${cat.id}" class="category-card">
+        <div class="category-emoji">${ICONS[cat.name] || '📦'}</div>
+        <div class="category-name">${cat.name}</div>
+        </a>
+        `).join('');
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function loadPopularProducts() {
+      try {
+        const res  = await fetch(`${API}/products?limit=4`);
+        const data = await res.json();
+        const container = document.getElementById('popularProducts');
+        if (!container) return;
+
+        const CATEGORY_ICONS = ICONS;
+
+        container.innerHTML = data.products.map(p => {
+          const icon  = ICONS[p.category_name] || '📦';
+          const price = Number(p.price).toLocaleString('uk-UA');
+          return `
+            <div class="product-card" onclick="window.location='product.html?id=${p.id}'" style="cursor:pointer">
+              <div class="product-img">
+                ${p.image_url
+                  ? `<img src="${p.image_url}" style="width:100%;height:100%;object-fit:cover">`
+                  : `<span class="product-emoji">${icon}</span>`}
+              </div>
+              <div class="product-body">
+                <div class="product-category">${p.category_name || ''}</div>
+                <div class="product-name">${p.name}</div>
+                <div class="product-desc">${p.description || ''}</div>
+                <div class="product-footer">
+                  <div class="product-price">${price} <span>₴</span></div>
+                  <button class="btn-cart" onclick="addToCart(${p.id},'${p.name.replace(/'/g,"\\'")}',${p.price});event.stopPropagation()">
+                    🛒 До кошика
+                  </button>
+                </div>
+              </div>
+            </div>`;
+        }).join('');
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadHomeCategories();
+      loadPopularProducts();
+      updateCartCount();
+    });
+  </script>
+</body>
+</html>

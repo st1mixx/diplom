@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Менеджер — ShopUA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">🛍️ ShopUA</a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Каталог</a>
+      </nav>
+      <div class="header-auth" id="headerAuth"></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="cabinet-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="cabinet-sidebar">
+          <div class="cabinet-user">
+            <div class="cabinet-avatar">⚙️</div>
+            <div class="cabinet-name" id="managerName">...</div>
+            <div class="cabinet-role">Менеджер</div>
+          </div>
+          <div class="cabinet-menu">
+            <button class="cabinet-link active" onclick="showManagerSection('new', this)">🆕 Нові замовлення</button>
+            <button class="cabinet-link" onclick="showManagerSection('active', this)">⚙️ В обробці</button>
+            <button class="cabinet-link" onclick="showManagerSection('all', this)">📦 Всі замовлення</button>
+            <button class="cabinet-link" onclick="logout()" style="color:var(--danger)">🚪 Вийти</button>
+          </div>
+        </aside>
+
+        <!-- КОНТЕНТ -->
+        <div class="cabinet-content">
+
+          <!-- НОВІ ЗАМОВЛЕННЯ -->
+          <div id="section-new">
+            <div class="section-title">🆕 Нові замовлення</div>
+            <p style="color:var(--text-3);font-size:.9rem;margin-bottom:20px">
+              Замовлення які очікують підтвердження
+            </p>
+            <div id="newOrdersList">
+              <div style="text-align:center;padding:40px;color:var(--text-3)">⏳ Завантаження...</div>
+            </div>
+          </div>
+
+          <!-- В ОБРОБЦІ -->
+          <div id="section-active" class="hidden">
+            <div class="section-title">⚙️ Замовлення в обробці</div>
+            <p style="color:var(--text-3);font-size:.9rem;margin-bottom:20px">
+              Підтверджені та замовлення що готуються до відправки
+            </p>
+            <div id="activeOrdersList">
+              <div style="text-align:center;padding:40px;color:var(--text-3)">⏳ Завантаження...</div>
+            </div>
+          </div>
+
+          <!-- ВСІ ЗАМОВЛЕННЯ -->
+          <div id="section-all" class="hidden">
+            <div class="section-title">📦 Всі замовлення</div>
+            <div id="allOrdersList">
+              <div style="text-align:center;padding:40px;color:var(--text-3)">⏳ Завантаження...</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 ShopUA — Всі права захищені</p>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/manager.js"></script>
+</body>
+</html>
